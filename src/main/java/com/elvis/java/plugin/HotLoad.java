@@ -23,6 +23,14 @@ import java.util.Map;
  */
 public class HotLoad {
 
+    /**
+     * 热部署入口
+     * @param host
+     * @param port
+     * @param className
+     * @param classFile
+     * @param jacoco 应对有些应用开启了覆盖率检测类似的agent，保持结构一致，避免热加载不兼容
+     */
     public static void hotLoadByRedefine(String host, String port,String className, String classFile, boolean jacoco) {
 
         VirtualMachine vm = getVirtualMachine(host,port);
@@ -80,6 +88,14 @@ public class HotLoad {
     }
 
 
+    /**
+     * 获取新的字节码
+     * @param classFile
+     * @param className
+     * @param jacoco
+     * @return
+     * @throws IOException
+     */
     private static byte[] getClassBytes(String classFile, String className, boolean jacoco) throws IOException {
 
         if (classFile == null || classFile.trim().isEmpty()) {

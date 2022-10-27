@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.elvis.plugin.HotLoadPlugin</id>
+    <name>HotLoadPlugin</name>
+    <vendor email="liuzheng" url="">elvis</vendor>
+
+    <description>hot load java class,adapt hello framework</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+    <idea-version since-build="201"  />
+
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="popupAction" class="com.elvis.java.plugin.RedefineAction" text="Hot Load"
+                description="Hot load current java class">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>

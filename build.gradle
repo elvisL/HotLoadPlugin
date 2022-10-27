@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.6.5'
+}
+
+group 'com.hello.java.plugin'
+version '1.1-RELEASE'
+
+repositories {
+    mavenCentral()
+}
+
+def ENV = System.getenv()
+dependencies {
+    compile fileTree(dir: '/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/lib', includes: ['tools.jar'])
+    compile group: 'org.apache.curator', name: 'curator-framework', version: '5.1.0'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.75'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'org.jacoco', name: 'org.jacoco.core', version: '0.8.6'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2020.1'
+    plugins = ['com.intellij.java']
+    intellij.updateSinceUntilBuild false
+}
+patchPluginXml {
+    changeNotes """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
+test {
+    useJUnitPlatform()
+}
+
+tasks.buildSearchableOptions {
+    enabled = false
+}

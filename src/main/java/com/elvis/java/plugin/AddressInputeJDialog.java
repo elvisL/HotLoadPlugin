@@ -1,7 +1,7 @@
 package com.elvis.java.plugin;
 
-import com.hello.java.plugin.zk.ServiceNode;
-import com.hello.java.plugin.zk.ZkUtils;
+import com.elvis.java.plugin.zk.ServiceNode;
+import com.elvis.java.plugin.zk.ZkUtils;
 import com.intellij.openapi.application.WriteAction;
 import com.intellij.openapi.progress.ProgressIndicator;
 import com.intellij.openapi.progress.ProgressManager;

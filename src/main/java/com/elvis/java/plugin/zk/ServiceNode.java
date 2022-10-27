@@ -1,6 +1,8 @@
 package com.elvis.java.plugin.zk;
 
-
+/**
+ * 服务节点模型
+ */
 public class ServiceNode {
     private String host;
     private Integer status; //兼容已经发布的服务，status为null的情况

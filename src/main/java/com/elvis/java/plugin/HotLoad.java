@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 热加载
+ * 热加载核心实现
  */
 public class HotLoad {
 

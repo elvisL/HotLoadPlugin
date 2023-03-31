@@ -34,12 +34,11 @@ public class AddressInputeJDialog extends JDialog {
     private final VirtualFile virtualFile;
 
     public AddressInputeJDialog(Project project, VirtualFile virtualFile, String compilerOutputVirtualFilePath, String ideaClassName) {
-        String basePath = project.getBasePath();
-        String[] split = basePath.split("/");
-        List<ServiceNode> serviceNodes = ZkUtils.getServiceNodes(split[split.length - 1]);
-        List<ServiceNode> nodes = serviceNodes.stream().filter(node -> node.getStatus() == 1).filter(node -> (node.getTag() == null || Objects.equals(node.getTag(), ""))).collect(Collectors.toList());
+       
+        List<ServiceNode> nodes = getServiceNodes(project);
         if (nodes.size() == 0) {
             Notifier.notifyError("not find target jvm host from zk,please input by yourself");
+            return;
         }
 
         String hostList = nodes.stream().map(ServiceNode::getHost).collect(Collectors.joining(","));
@@ -113,6 +112,19 @@ public class AddressInputeJDialog extends JDialog {
     private void onCancel() {
         // add your code here if necessary
         dispose();
+    }
+    
+    /**
+     * 拿到服务节点
+     */
+    private List<ServiceNode> getServiceNodes(Project project){
+        
+        String basePath = project.getBasePath();
+        String[] split = basePath.split("/");
+        List<ServiceNode> serviceNodes = ZkUtils.getServiceNodes(split[split.length - 1]);
+        List<ServiceNode> nodes = serviceNodes.stream().filter(node -> node.getStatus() == 1).filter(node -> (node.getTag() == null || Objects.equals(node.getTag(), ""))).collect(Collectors.toList());
+        
+        return nodes;
     }
 
 
